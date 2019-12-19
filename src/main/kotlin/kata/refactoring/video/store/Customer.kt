@@ -18,12 +18,12 @@ class Customer(val name: String) {
             var thisAmount = 0.0
             val each = rentals.nextElement() as Rental
             when (each.movie!!.priceCode) {
-                Movie.REGULAR -> {
+                REGULAR -> {
                     thisAmount += 2.0
                     if (each.daysRented > 2) thisAmount += (each.daysRented - 2) * 1.5
                 }
-                Movie.NEW_RELEASE -> thisAmount += each.daysRented * 3.toDouble()
-                Movie.CHILDRENS -> {
+                NEW_RELEASE -> thisAmount += each.daysRented * 3.toDouble()
+                CHILDRENS -> {
                     thisAmount += 1.5
                     if (each.daysRented > 3) thisAmount += (each.daysRented - 3) * 1.5
                 }
@@ -31,7 +31,7 @@ class Customer(val name: String) {
             // add frequent renter points
             frequentRenterPoints++
             // add bonus for a two day new release rental
-            if (each.movie!!.priceCode == Movie.NEW_RELEASE && each.daysRented > 1) {
+            if (each.movie!!.priceCode == NEW_RELEASE && each.daysRented > 1) {
                 frequentRenterPoints++
             }
             //show figures for this rental

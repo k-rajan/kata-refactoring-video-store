@@ -8,12 +8,12 @@ class CustomerTest {
     fun test() {
         var customer: Customer = Customer("Bob")
 
-        customer.addRental(Rental(Movie("Jaws", Movie.REGULAR), 2));
-        customer.addRental(Rental(Movie("GoldenEye", Movie.REGULAR), 3));
-        customer.addRental(Rental(Movie("ShortNew", Movie.NEW_RELEASE), 1));
-        customer.addRental(Rental(Movie("LongNew", Movie.NEW_RELEASE), 2));
-        customer.addRental(Rental(Movie("Bambi", Movie.CHILDRENS), 3));
-        customer.addRental(Rental(Movie("Toy Story", Movie.CHILDRENS), 4));
+        customer.addRental(Rental(Movie("Jaws", REGULAR), 2));
+        customer.addRental(Rental(Movie("GoldenEye", REGULAR), 3));
+        customer.addRental(Rental(Movie("ShortNew", NEW_RELEASE), 1));
+        customer.addRental(Rental(Movie("LongNew", NEW_RELEASE), 2));
+        customer.addRental(Rental(Movie("Bambi", CHILDRENS), 3));
+        customer.addRental(Rental(Movie("Toy Story", CHILDRENS), 4));
 
         assertEquals("Rental Record for Bob\n" +
                 "\tJaws\t2.0\n" +
