@@ -4,28 +4,34 @@ import java.util.*
 
 
 class Customer(val name: String) {
-    private val rentals: Vector<Any?> = Vector<Any?>()
+    private val rentals: Vector<Rental> = Vector<Rental>()
     fun addRental(rental: Rental?) {
         rentals.addElement(rental)
     }
 
     fun statement(): String {
-        var totalAmount = 0.0
-        var frequentRenterPoints = 0
-        val rentals = rentals.elements()
-        var result = "Rental Record for $name\n"
+        var totalAmount: Double = 0.0
+        var frequentRenterPoints: Int = 0
+        var rentals: Enumeration<Rental> = rentals.elements()
+        var result :String = "Rental Record for " + name + "\n"
         while (rentals.hasMoreElements()) {
-            var thisAmount = 0.0
-            val each = rentals.nextElement() as Rental
+            var thisAmount: Double = 0.0
+            var each: Rental = rentals.nextElement()
             when (each.movie!!.priceCode) {
                 REGULAR -> {
                     thisAmount += 2.0
-                    if (each.daysRented > 2) thisAmount += (each.daysRented - 2) * 1.5
+                    if (each.daysRented > 2) {
+                        thisAmount += (each.daysRented - 2) * 1.5
+                    }
                 }
-                NEW_RELEASE -> thisAmount += each.daysRented * 3.toDouble()
+                NEW_RELEASE -> {
+                    thisAmount += each.daysRented * 3.toDouble()
+                }
                 CHILDRENS -> {
                     thisAmount += 1.5
-                    if (each.daysRented > 3) thisAmount += (each.daysRented - 3) * 1.5
+                    if (each.daysRented > 3) {
+                        thisAmount += (each.daysRented - 3) * 1.5
+                    }
                 }
             }
             // add frequent renter points
@@ -35,13 +41,12 @@ class Customer(val name: String) {
                 frequentRenterPoints++
             }
             //show figures for this rental
-            result += ("\t" + each.movie!!.title + "\t"
-                    + thisAmount.toString() + "\n")
+            result += "\t" + each.movie!!.title + "\t" + thisAmount.toString() + "\n"
             totalAmount += thisAmount
         }
         //add footer lines
-        result += "You owed $totalAmount\n"
-        result += "You earned $frequentRenterPoints frequent renter points"
+        result += "You owed " + totalAmount + "\n"
+        result += "You earned " + frequentRenterPoints + " frequent renter points"
         return result
     }
 
